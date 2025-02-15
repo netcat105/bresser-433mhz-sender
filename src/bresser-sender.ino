@@ -9,7 +9,7 @@ Library for DHT22 sensor: https://github.com/adafruit/DHT-sensor-library
 
 #include <DHT.h>
 #include <DHT_U.h>
-#include <Adafruit_SleepyDog.h>  // Watchdog sleep timer
+#include <Adafruit_SleepyDog.h> // Watchdog sleep timer
 
 byte SEND_PIN = 3;
 
