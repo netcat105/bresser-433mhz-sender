@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"githubPullRequests.remotes": [
+			"https://github.com/netcat105/bresser-433mhz-sender"
+		],
+		"workbench.colorCustomizations": {
+			"statusBar.background": "#28632b",
+			"statusBar.foreground": "#ffffff",
+			"statusBarItem.hoverBackground": "#327e36"
+		}
+	}
+}
