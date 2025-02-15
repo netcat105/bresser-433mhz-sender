@@ -10,6 +10,10 @@
             "includePath": [
                 "/Users/user/Documents/PlatformIO/Projects/bresser-433mhz-sender/include",
                 "/Users/user/Documents/PlatformIO/Projects/bresser-433mhz-sender/src",
+                "/Users/user/Documents/PlatformIO/Projects/bresser-433mhz-sender/.pio/libdeps/uno/Adafruit SleepyDog Library",
+                "/Users/user/Documents/PlatformIO/Projects/bresser-433mhz-sender/.pio/libdeps/uno/Adafruit SleepyDog Library/utility",
+                "/Users/user/Documents/PlatformIO/Projects/bresser-433mhz-sender/.pio/libdeps/uno/DHT sensor library",
+                "/Users/user/Documents/PlatformIO/Projects/bresser-433mhz-sender/.pio/libdeps/uno/Adafruit Unified Sensor",
                 "/Users/user/.platformio/packages/framework-arduino-avr/cores/arduino",
                 "/Users/user/.platformio/packages/framework-arduino-avr/variants/standard",
                 "/Users/user/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
@@ -24,6 +28,10 @@
                 "path": [
                     "/Users/user/Documents/PlatformIO/Projects/bresser-433mhz-sender/include",
                     "/Users/user/Documents/PlatformIO/Projects/bresser-433mhz-sender/src",
+                    "/Users/user/Documents/PlatformIO/Projects/bresser-433mhz-sender/.pio/libdeps/uno/Adafruit SleepyDog Library",
+                    "/Users/user/Documents/PlatformIO/Projects/bresser-433mhz-sender/.pio/libdeps/uno/Adafruit SleepyDog Library/utility",
+                    "/Users/user/Documents/PlatformIO/Projects/bresser-433mhz-sender/.pio/libdeps/uno/DHT sensor library",
+                    "/Users/user/Documents/PlatformIO/Projects/bresser-433mhz-sender/.pio/libdeps/uno/Adafruit Unified Sensor",
                     "/Users/user/.platformio/packages/framework-arduino-avr/cores/arduino",
                     "/Users/user/.platformio/packages/framework-arduino-avr/variants/standard",
                     "/Users/user/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
