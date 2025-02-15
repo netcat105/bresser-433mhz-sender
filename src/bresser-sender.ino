@@ -71,7 +71,7 @@ void loop()
   digitalWrite(LED_BUILTIN, LOW);
 
   // Activate sleepstate for 30s (sendPeriod)
-  int sleepMS = Watchdog.sleep(sendPeriod);
+  Watchdog.sleep(sendPeriod);
 
   // Lit up builtin led signaling that the divice is back to active mode
   digitalWrite(LED_BUILTIN, HIGH);
