@@ -1,6 +1,3 @@
-
-
-
 /*
 
 Used Bresser Protocol from https://github.com/merbanan/rtl_433_tests/tree/master/tests/bresser_3ch
@@ -13,8 +10,6 @@ Library for DHT22 sensor: https://github.com/adafruit/DHT-sensor-library
 #include <DHT.h>
 #include <DHT_U.h>
 #include <Adafruit_SleepyDog.h>  // Watchdog sleep timer
-
-
 
 byte SEND_PIN = 3;
 
@@ -72,12 +67,14 @@ void loop()
 
   sendData(Temperature, Humidity);
 
+  // Shutdown built in led when enter in sleep state
+  digitalWrite(LED_BUILTIN, LOW);
 
-  digitalWrite(LED_BUILTIN, LOW);             // Shutdown built in led when enter in sleep state
-  int sleepMS = Watchdog.sleep(sendPeriod);   // Activate sleepstate for 30s (sendPeriod)
-  digitalWrite(LED_BUILTIN, HIGH);            // Light up built in led signaling that the divice is back to active mode
-  //delay(sendPeriod);                        // Old cycle wait state around sendPeriod
+  // Activate sleepstate for 30s (sendPeriod)
+  int sleepMS = Watchdog.sleep(sendPeriod);
 
+  // Lit up builtin led signaling that the divice is back to active mode
+  digitalWrite(LED_BUILTIN, HIGH);
 }
 
 void sendData(int Temperature, int Humidity)
