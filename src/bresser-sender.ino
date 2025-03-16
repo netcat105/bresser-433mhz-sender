@@ -37,7 +37,7 @@ void setup()
   if (DEBUG)
   {
     Serial.begin(9600);
-    Serial.println(F("Build 2025-03-16 - Staged version"));
+    Serial.println(F("Build 2025-03-16 - work in progess"));
     Serial.println(F("DHT22 Test!"));
   }
 
