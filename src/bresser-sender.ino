@@ -17,12 +17,18 @@ byte SEND_PIN = 2;
 #define DHTTYPE DHT22
 DHT dht(DHTPIN, DHTTYPE);
 
+float humCalibration = -5;    // % Percentage offset
+float tempCalibration = -5.1; // % Percentage offset
+
+float tempCalibrationConstant;
+float humCalibrationConstant;
+
 int periodusec = 250;
 byte repeats = 15;
 byte randomId = 252;
-int sendPeriod = 30000;
+unsigned long sendPeriod = 57000; // tipical period for Channel 1
 
-#define DEBUG false
+#define DEBUG true
 
 void setup()
 {
@@ -38,13 +44,22 @@ void setup()
 
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, HIGH);
+
+  // Initialize calibration module values
+  tempCalibrationConstant = initCalibration(tempCalibration);
+  humCalibrationConstant = initCalibration(humCalibration);
 }
 
 void loop()
 {
+  delay(100);
   float h = dht.readHumidity();
-  float t = dht.readTemperature();
   float f = dht.readTemperature(true);
+  float t = dht.readTemperature();
+
+  t = calculateCalibratedValue(t, tempCalibrationConstant, tempCalibration);
+  f = calculateCalibratedValue(f, tempCalibrationConstant, tempCalibration);
+  h = calculateCalibratedValue(h, humCalibrationConstant, humCalibration);
 
   if (DEBUG)
   {
@@ -58,7 +73,9 @@ void loop()
     Serial.print(h);
     Serial.print(F("%  Temperature: "));
     Serial.print(t);
-    Serial.print(F("°C "));
+    Serial.print(F("°C  -  "));
+    Serial.print(f);
+    Serial.print(F("°F "));
     Serial.println();
   }
 
@@ -70,8 +87,9 @@ void loop()
   // Shutdown built in led when enter in sleep state
   digitalWrite(LED_BUILTIN, LOW);
 
-  // Activate sleepstate for 30s (sendPeriod)
-  Watchdog.sleep(sendPeriod);
+  // Activate sleepstate for (sendPeriod)
+  // Watchdog.sleep(sendPeriod);   //not good for long periods >30sec
+  delay(sendPeriod);
 
   // Lit up builtin led signaling that the divice is back to active mode
   digitalWrite(LED_BUILTIN, HIGH);
@@ -172,5 +190,36 @@ void sendPraBits()
     delayMicroseconds(750);
     digitalWrite(SEND_PIN, LOW);
     delayMicroseconds(750);
+  }
+}
+
+float initCalibration(float percentSkew)
+{
+  float j;
+  if (percentSkew < 0)
+  {
+    percentSkew = abs(percentSkew);
+    j = (1 + (percentSkew / 100));
+    return j;
+  }
+  else
+  {
+    j = (1 + (percentSkew / 100));
+    return j;
+  }
+}
+
+float calculateCalibratedValue(float reading, float correction, float skew)
+{
+  float j;
+  if (skew < 0)
+  {
+    j = reading / correction;
+    return j;
+  }
+  else
+  {
+    j = reading * correction;
+    return j;
   }
 }
