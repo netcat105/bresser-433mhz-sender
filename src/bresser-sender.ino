@@ -168,7 +168,7 @@ void sendBit(boolean isBitOne)
   if (isBitOne)
   {
     // Send '1'
-    
+
     digitalWrite(SEND_PIN, HIGH);
     delayMicroseconds(periodusec * 2);
     digitalWrite(SEND_PIN, LOW);
@@ -188,9 +188,11 @@ void sendPraBits()
 {
   for (int i = 0; i < 4; i++)
   {
-    digitalWrite(SEND_PIN, HIGH);
+    PORTD = PORTD | B00000100;
+    // digitalWrite(SEND_PIN, HIGH);
     delayMicroseconds(750);
-    digitalWrite(SEND_PIN, LOW);
+    PORTD = PORTD & B11111011;
+    // digitalWrite(SEND_PIN, LOW);
     delayMicroseconds(750);
   }
 }
