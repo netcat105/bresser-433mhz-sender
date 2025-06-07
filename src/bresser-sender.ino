@@ -168,6 +168,7 @@ void sendBit(boolean isBitOne)
   if (isBitOne)
   {
     // Send '1'
+    
     digitalWrite(SEND_PIN, HIGH);
     delayMicroseconds(periodusec * 2);
     digitalWrite(SEND_PIN, LOW);
