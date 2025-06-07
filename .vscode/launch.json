@@ -9,6 +9,21 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "PlatformIO Debugger",
+            "request": "launch",
+            "type": "platformio-debug",
+            "executable": ".pio/build/myenv/firmware.elf",
+            "toolchainBinDir": "/usr/local/bin"
+        },
+        {
+            "name": "C/C++ Runner: Debug Session",
+            "type": "lldb",
+            "request": "launch",
+            "args": [],
+            "cwd": "/Users/user/Documents/PlatformIO/Projects/bresser-433mhz-sender/src",
+            "program": "/Users/user/Documents/PlatformIO/Projects/bresser-433mhz-sender/src/build/Debug/outDebug"
+        },
+        {
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug",
