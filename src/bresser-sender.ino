@@ -26,18 +26,19 @@ float humCalibrationConstant;
 int periodusec = 250;
 byte repeats = 15;
 byte randomId = 252;
-unsigned long sendPeriod = 57000; // tipical period for Channel 1
+unsigned long sendPeriod = 57000; // tipical period for Channel 1 (57000)
 
 #define DEBUG true
 
 void setup()
 {
   pinMode(SEND_PIN, OUTPUT);
+  pinMode(DHTPIN, INPUT_PULLUP);
 
   if (DEBUG)
   {
     Serial.begin(9600);
-    Serial.println(F("Build 2025-03-16 - work in progess"));
+    Serial.println(F("Build 2025-06-08 - work in progess"));
     Serial.println(F("DHT22 Test!"));
   }
 
@@ -168,18 +169,21 @@ void sendBit(boolean isBitOne)
   if (isBitOne)
   {
     // Send '1'
-
-    digitalWrite(SEND_PIN, HIGH);
+    PORTD = PORTD | B00000100;
+    // digitalWrite(SEND_PIN, HIGH);
     delayMicroseconds(periodusec * 2);
-    digitalWrite(SEND_PIN, LOW);
+    PORTD = PORTD & B11111011;
+    // digitalWrite(SEND_PIN, LOW);
     delayMicroseconds(periodusec);
   }
   else
   {
     // Send '0'
-    digitalWrite(SEND_PIN, HIGH);
+    PORTD = PORTD | B00000100;
+    // digitalWrite(SEND_PIN, HIGH);
     delayMicroseconds(periodusec);
-    digitalWrite(SEND_PIN, LOW);
+    PORTD = PORTD & B11111011;
+    // digitalWrite(SEND_PIN, LOW);
     delayMicroseconds(periodusec * 2);
   }
 }
